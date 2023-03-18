@@ -48,6 +48,27 @@
 .imgLupa{
     width: 1.5rem;
     margin-left: 0;
+}
 
+.descripcion_container{
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    gap: 2rem;
+}
+
+
+
+.registro_container{
+    width: 100%;
+    height: 100vh;
+    background-color: #F7F5FF;
+    display: grid;
+    place-content: center;
+}
+
+
+.registro_container div:first-child{
+    width: 100%;
+    min-width: 24rem;
 
 }

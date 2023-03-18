@@ -1,5 +1,6 @@
 import  login from  "../styles/login.module.css" ;
 function FormularioLogin() {
+
     return (
         <div className={"bg-light px-4 py-5 rounded"}>
             <h1 className={"text-center text-dark fw-bold mb-5"}>Login</h1>
@@ -13,8 +14,12 @@ function FormularioLogin() {
                     <input type="password" className="form-control" id="contra" required={true} placeholder={"Ingresa tu contraseña"}/>
                 </div>
 
-                <button type="submit" className="btn btn-primary text-center px-3">Submit</button>
+                <button type="submit" className="btn btn-primary text-center px-3">Ingresar</button>
             </form>
+            <div className={"align-self-center text-center mt-4"}>
+                <p className={"text-dark m-1"}>¿No tienes una cuenta?</p>
+                <button className={"btn btn-outline-primary"}>Regístrate aquí</button>
+            </div>
         </div>
 );
 }

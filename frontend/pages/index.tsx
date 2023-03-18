@@ -2,19 +2,22 @@ import Link from 'next/link'
 import Layout from '../components/Layout'
 import Login from "../components/Login";
 import {useState} from "react";
-import Principal from "../components/Principal";
+import PrincipalTickets from "../components/PrincipalTickets";
+import SeccionDerecha from "../components/SeccionDerecha";
+import Registro from "../components/Registro";
 
 const IndexPage = () => {
-    const [estaLogeado, setEstaLogeado] = useState(true);
+    const [estaLogeado, setEstaLogeado] = useState(false);
 
     return (
         <>
             {estaLogeado ?
                 <Layout title={"Menú principal"}>
-                    <Principal/>
+                    <SeccionDerecha/>
                 </Layout>
                 :
-                <Login/>
+                // <Login/>
+                <Registro/>
             }
         </>
     )
