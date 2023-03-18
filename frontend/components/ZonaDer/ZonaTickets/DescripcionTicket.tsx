@@ -1,16 +1,19 @@
-import Ticket_Respuesta from "./Ticket_Respuesta";
+import Respuesta from "./Respuesta";
 import TarjetaTicket from "./TarjetaTicket";
 import st from "../../../styles/principal.module.css";
+import {ITicket} from "../../../interfaces";
+import TicketParcial from "./TicketParcial";
 
-export default function DescripcionTicket({infoTicket, infoRespuesta, miTarjeta}: { infoTicket: any, infoRespuesta: any, miTarjeta: any }) {
+export default function DescripcionTicket({ticket}: { ticket: ITicket }) {
+
     return (
         <div className={st.descripcion_container}>
             <section>
-                <Ticket_Respuesta info={infoTicket}/>
-                <Ticket_Respuesta info={infoRespuesta}/>
+                <TicketParcial ticket={ticket}/>
+                <Respuesta ticket={ticket}/>
             </section>
             <section className={"d-flex  align-items-center justify-content-center border-start"}>
-                <TarjetaTicket {...miTarjeta} />
+                <TarjetaTicket ticket={ticket} />
             </section>
         </div>
     );

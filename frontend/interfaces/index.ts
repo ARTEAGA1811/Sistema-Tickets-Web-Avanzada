@@ -13,7 +13,7 @@ export enum Prioridad {
     BAJA = 'BAJA',
     MEDIA = 'MEDIA',
     ALTA = 'ALTA',
-    SIN_PRIORIDAD = 'SIN_PRIORIDAD'
+    SIN_PRIORIDAD = 'SIN PRIORIDAD'
 }
 
 export enum Estado {

@@ -2,7 +2,6 @@ import {Estado, ITicket, Prioridad} from "../../../interfaces";
 import InfoBadget from "./InfoBadget";
 import {useState} from "react";
 import ModalTicket from "./ModalTicket";
-import {ITicket_Info_Respuesta} from "./Ticket_Respuesta";
 import {ITarjetaTicket} from "./TarjetaTicket";
 import DescripcionTicket from "./DescripcionTicket";
 import presentarFecha from "../../../utils/fechas";
@@ -36,25 +35,27 @@ export default function Ticket({ticket}: { ticket: ITicket }) {
                 return Colores.GRIS
         }
     }
-    const infoTicket: ITicket_Info_Respuesta = {
-        titulo: ticket.titulo,
-        descripcion: ticket.descripcion,
-        fechaCreacion: new Date('2021-01-01'),
-    }
 
-    const infoRespuesta: ITicket_Info_Respuesta = {
-        titulo: "Respuesta",
-        descripcion: "Descripcion de la respuesta",
-        fechaCreacion: new Date('2021-01-01'),
-    }
+    // const infoTicket: ITicket_Info_Respuesta = {
+    //     titulo: ticket.titulo,
+    //     descripcion: ticket.descripcion,
+    //     fechaCreacion: new Date('2021-01-01'),
+    // }
+    //
+    // const infoRespuesta: ITicket_Info_Respuesta = {
+    //     titulo: "Respuesta",
+    //     descripcion: "Descripcion de la respuesta",
+    //     fechaCreacion: new Date('2021-01-01'),
+    // }
+    //
+    // const miTarjeta: ITarjetaTicket = {
+    //     id: ticket.id,
+    //     estado: ticket.estado,
+    //     fechaCreacion: ticket.fechaCreacion,
+    //     fechaResolucion: new Date('2021-01-01'),
+    //     prioridad: "Alta",
+    // }
 
-    const miTarjeta: ITarjetaTicket = {
-        id: ticket.id,
-        estado: ticket.estado,
-        fechaCreacion: ticket.fechaCreacion,
-        fechaResolucion: new Date('2021-01-01'),
-        prioridad: "Alta",
-    }
     return (
         <div className={"border p-3 rounded shadow-sm mb-3"}>
             <section className={"d-flex justify-content-between mb-1"}>
@@ -78,7 +79,7 @@ export default function Ticket({ticket}: { ticket: ITicket }) {
             {
                 mostrarInfoTicket &&
                 <ModalTicket setMostrarInfoTicket={setMostrarInfoTicket}>
-                    <DescripcionTicket infoTicket={infoTicket} infoRespuesta={infoRespuesta} miTarjeta={miTarjeta}/>
+                    <DescripcionTicket ticket={ticket}/>
                 </ModalTicket>
             }
         </div>

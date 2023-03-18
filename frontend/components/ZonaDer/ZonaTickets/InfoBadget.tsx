@@ -18,7 +18,7 @@ export default function InfoBadget(props: { children: ReactNode, variante: Color
     }
     return (
         <div>
-            <p className={obtenerColorPorVariante() + " badge rounded-pill"}>
+            <p className={obtenerColorPorVariante() + " badge rounded-pill mb-0"}>
                 {props.children}
             </p>
 

@@ -15,12 +15,12 @@ export default function ModalTicket(props: { setMostrarInfoTicket: any, children
                     {props.children}
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={cerrarModal}>
+                    <Button variant="outline-secondary" onClick={cerrarModal}>
                         Cerrar
                     </Button>
-                    <Button variant="primary" onClick={cerrarModal}>
-                        Guardar cambios
-                    </Button>
+                    {/*<Button variant="primary" onClick={cerrarModal}>*/}
+                    {/*    Guardar cambios*/}
+                    {/*</Button>*/}
                 </Modal.Footer>
             </Modal>
         </>
