@@ -1,4 +1,4 @@
-import InfoColor from "./InfoColor";
+import InfoBadget from "./InfoBadget";
 
 export interface ITarjetaTicket {
     id: string;
@@ -15,7 +15,7 @@ export default function TarjetaTicket(props: ITarjetaTicket) {
                 <h5>Ticket info</h5>
                 <p className={"d-flex justify-content-between"}>
                     <span>Ticket ID:</span>
-                    <InfoColor/>
+                    <InfoBadget/>
                 </p>
                 <p className={"d-flex justify-content-between"}>
                     <span>Creado: </span>
@@ -27,11 +27,11 @@ export default function TarjetaTicket(props: ITarjetaTicket) {
                 </p>
                 <p className={"d-flex justify-content-between"}>
                     <span>Estado: </span>
-                    <InfoColor/>
+                    <InfoBadget/>
                 </p>
                 <p className={"d-flex justify-content-between"}>
                     <span>Prioridad:</span>
-                    <InfoColor/>
+                    <InfoBadget/>
                 </p>
             </section>
         </div>

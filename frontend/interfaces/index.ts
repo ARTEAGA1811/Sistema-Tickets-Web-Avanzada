@@ -9,12 +9,29 @@ export type User = {
     name: string
 }
 
+export enum Prioridad {
+    BAJA = 'BAJA',
+    MEDIA = 'MEDIA',
+    ALTA = 'ALTA',
+    SIN_PRIORIDAD = 'SIN_PRIORIDAD'
+}
+
+export enum Estado {
+    ABIERTO = 'ABIERTO',
+    CERRADO = 'CERRADO'
+}
+
+export enum Rol {
+    USUARIO = 'USUARIO',
+    SOPORTE = 'SOPORTE'
+}
+
 export interface IUsuario {
     id: number;
     nombre: string;
     correo: string;
     password?: string;
-    rol: string;
+    rol: Rol;
 }
 
 
@@ -24,6 +41,14 @@ export interface ITicket{
     descripcion: string;
     fechaCreacion: Date;
     fechaResolucion?: Date;
-    estado: string;
-    prioridad?: string;
+    estado: Estado;
+    prioridad?: Prioridad;
+    usuarioId: number;
+    soporteId: number;
+    respuestaId: string;
+}
+
+export interface IRespuestaTicket{
+    id: string;
+    respuesta: string;
 }

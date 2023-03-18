@@ -1,6 +1,6 @@
-import InfoColor from "./InfoColor";
+import InfoBadget from "./InfoBadget";
 import ModalTicket from "./ModalTicket";
-import {ITicket} from "../interfaces";
+import {ITicket} from "../../../interfaces";
 
 export interface ITicket_Info_Respuesta {
     titulo: string;

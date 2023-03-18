@@ -1,7 +1,7 @@
 import React, {ReactNode} from 'react'
 import Link from 'next/link'
 import Head from 'next/head'
-import ZonaNavegacion from "./ZonaNavegacion";
+import ZonaNavegacion from "./ZonaIzq/ZonaNavegacion";
 import sty from '../styles/principal.module.css'
 
 type Props = {
@@ -21,7 +21,6 @@ const Layout = ({children, title = 'This is the default title'}: Props) => (
                   crossOrigin="anonymous"/>
         </Head>
         <main className={sty.main}>
-            <ZonaNavegacion/>
             {children}
         </main>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

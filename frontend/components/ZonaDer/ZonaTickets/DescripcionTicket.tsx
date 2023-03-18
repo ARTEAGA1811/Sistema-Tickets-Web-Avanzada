@@ -1,6 +1,6 @@
 import Ticket_Respuesta from "./Ticket_Respuesta";
 import TarjetaTicket from "./TarjetaTicket";
-import st from "../styles/principal.module.css";
+import st from "../../../styles/principal.module.css";
 
 export default function DescripcionTicket({infoTicket, infoRespuesta, miTarjeta}: { infoTicket: any, infoRespuesta: any, miTarjeta: any }) {
     return (

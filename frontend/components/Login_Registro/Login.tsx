@@ -1,10 +1,10 @@
-import login from "../styles/login.module.css";
+import login from "../../styles/login.module.css";
 import FormularioLogin from "./FormularioLogin";
 import Head from "next/head";
-import React from "react";
+import React, {Dispatch, SetStateAction} from "react";
 import {log} from "util";
 
-export default function Login() {
+export default function Login(props: { setEstaLogeado:  Dispatch<SetStateAction<boolean>> }) {
     return (
         <div>
             <Head>
@@ -25,7 +25,7 @@ export default function Login() {
                         efectiva</p>
                 </div>
                 <div className={" mx-5 px-5" }>
-                    <FormularioLogin/>
+                    <FormularioLogin setEstaLogeado={props.setEstaLogeado}/>
                 </div>
             </div>
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"

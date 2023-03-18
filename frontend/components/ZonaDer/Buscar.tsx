@@ -1,5 +1,5 @@
-import lupa from '../assets/lupa.png';
-import st from '../styles/principal.module.css'
+import lupa from '../../assets/lupa.png';
+import st from '../../styles/principal.module.css'
 export default function Buscar() {
     return (
         <div>
