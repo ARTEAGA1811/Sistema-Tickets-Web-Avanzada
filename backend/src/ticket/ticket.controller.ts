@@ -1,4 +1,4 @@
-import {BadRequestException, Body, Controller, HttpCode, Post, UseGuards, Request} from '@nestjs/common';
+import {BadRequestException, Body, Controller, HttpCode, Post, UseGuards, Request, Get} from '@nestjs/common';
 import {JwtGuard} from "../usuario/jwt.guard";
 import {Roles, RolesGuard} from "../usuario/roles.guard";
 import {validate} from "class-validator";
@@ -20,5 +20,13 @@ export class TicketController {
         }
 
         return this.ticketService.create(bodyParams, req.user.sub)
+    }
+
+    @Get()
+    @Roles('Usuario')
+    @UseGuards(JwtGuard, RolesGuard)
+    @HttpCode(201)
+    async obtenerTickets(@Request() req) {
+        return this.ticketService.obtenerTickets(req.user.sub)
     }
 }

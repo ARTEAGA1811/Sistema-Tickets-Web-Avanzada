@@ -41,7 +41,7 @@ export class TicketEntity{
     @ManyToOne(() => UsuarioEntity, {nullable: false})
     usuario: UsuarioEntity;
 
-    @ManyToOne(() => UsuarioEntity)
+    @ManyToOne(() => UsuarioEntity, {nullable: false})
     soporte: UsuarioEntity;
 
     @ManyToOne(() => PrioridadEntity, {nullable: false})

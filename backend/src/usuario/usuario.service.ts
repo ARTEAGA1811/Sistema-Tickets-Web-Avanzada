@@ -57,4 +57,18 @@ export class UsuarioService {
         return usuario.rol.nombre === nombreRol;
     }
 
+    async buscarSoporteDisponible(){
+        const usuarios = await this.find({
+            where: {
+                rol: {
+                    nombre: 'Soporte'
+                }
+            },
+            relations: ['rol']
+        });
+
+        console.log("usuarios " + usuarios)
+        return usuarios[Math.floor(Math.random() * usuarios.length)]
+    }
+
 }
