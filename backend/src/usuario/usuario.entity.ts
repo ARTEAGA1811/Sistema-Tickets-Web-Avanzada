@@ -1,5 +1,6 @@
-import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn} from "typeorm";
 import {RolEntity} from "./rol.entity";
+import {TicketEntity} from "../ticket/ticket.entity";
 
 @Entity('usuario')
 export class UsuarioEntity{
@@ -33,8 +34,11 @@ export class UsuarioEntity{
     @ManyToOne(
         () => RolEntity,
     )
+    @JoinColumn({name: 'rolId'})
     rol: RolEntity;
 
+    @OneToMany(() => TicketEntity, ticket => ticket.usuario)
+    tickets: TicketEntity[];
 
 
 
