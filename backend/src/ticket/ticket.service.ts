@@ -56,4 +56,17 @@ export class TicketService implements OnApplicationBootstrap{
             relations: ['usuario', 'soporte', 'prioridad', 'estado']
         });
     }
+
+    async obtenerTicketsSoporte(nombreUsuario: string){
+        const usuario = await this.usuarioService.findOneByNombre(nombreUsuario);
+        if(!usuario){
+            console.log('Usuario ' + nombreUsuario + ' no existe');
+        }
+        return this.ticketRepository.find({
+            where: {
+                soporte: usuario
+            },
+            relations: ['usuario', 'soporte', 'prioridad', 'estado']
+        });
+    }
 }

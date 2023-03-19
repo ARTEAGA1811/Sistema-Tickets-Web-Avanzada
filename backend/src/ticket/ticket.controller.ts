@@ -29,4 +29,12 @@ export class TicketController {
     async obtenerTickets(@Request() req) {
         return this.ticketService.obtenerTickets(req.user.sub)
     }
+
+    @Get('soporte')
+    @Roles('Soporte')
+    @UseGuards(JwtGuard, RolesGuard)
+    @HttpCode(201)
+    async obtenerTicketsSoporte(@Request() req) {
+        return this.ticketService.obtenerTicketsSoporte(req.user.sub)
+    }
 }

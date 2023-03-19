@@ -26,6 +26,9 @@ export class RolesGuard implements CanActivate {
             }
         }
         console.log("hasRole " + hasRole)
+        if(!hasRole){
+            console.log("No tiene roles" + roles)
+        }
         return user && hasRole;
     }
 }
