@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import st from "../../styles/principal.module.css";
-import {Button, Form} from "react-bootstrap";
+import {Alert, Button, Form} from "react-bootstrap";
 import ModalMensaje from "./ModalMensaje";
 
 export default function () {
@@ -9,15 +9,49 @@ export default function () {
     const [correoElectronico, setCorreoElectronico] = React.useState("");
     const [contrasena, setContrasena] = React.useState("");
     const [registroCorrecto, setRegistroCorrecto] = React.useState(false);
+    const [mostrarError, setMostrarError] = React.useState(false);
+    const [mensajeError, setMensajeError] = React.useState<string>("");
 
     const handleSubmit = (event: React.FormEvent) => {
         event.preventDefault();
 
         //Aquí va la petición al servidor
+        crearUsuario()
+            .then(() => {
+                console.log("Usuario creado");
+                setRegistroCorrecto(true);
+            })
+            .catch((error) => {
+                console.log("Error al crear el usuario");
+                console.log(error);
+                setMensajeError("Error al crear el usuario");
+                setMostrarError(true);
+            });
 
-        //En caso que sí se haya registrado correctamente se redirige a la página de login
+        //En caso de que sí se haya registrado correctamente se redirige a la página de login
         //window.location.href = "/";
-        setRegistroCorrecto(true);
+    }
+
+    const crearUsuario = async () => {
+        console.log("Creando usuario");
+        console.log(nombreUsuario);
+        console.log(correoElectronico);
+        console.log(contrasena);
+        const response = await fetch("http://localhost:3001/usuario", {
+            method: "POST",
+            //mode: "no-cors",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                "nombre": nombreUsuario,
+                "correo": correoElectronico,
+                "contrasena": contrasena,
+                "rol": "Usuario"
+            })
+        },);
+        const data = await response.json();
+        console.log(data);
     }
 
     const handleNombreUsuario = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +82,11 @@ export default function () {
             <main className={st.registro_container}>
                 <div className={"px-4 py-3 bg-light border  rounded d-flex flex-column"}>
                     <h1 className={"text-center text-dark fw-bold mb-5 "}>Registro</h1>
+                    {mostrarError &&
+                        <Alert variant={"danger"}>
+                            {mensajeError}
+                        </Alert>
+                    }
                     <Form className={"d-flex flex-column"} onSubmit={handleSubmit}>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
                             <Form.Label className={"text-primary fs-5 fw-semibold"}>Nombre de usuario</Form.Label>
