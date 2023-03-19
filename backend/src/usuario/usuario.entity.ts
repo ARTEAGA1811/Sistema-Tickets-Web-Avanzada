@@ -1,4 +1,5 @@
-import {Column, Entity, PrimaryGeneratedColumn} from "typeorm";
+import {Column, Entity, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
+import {RolEntity} from "./rol.entity";
 
 @Entity('usuario')
 export class UsuarioEntity{
@@ -28,6 +29,13 @@ export class UsuarioEntity{
         nullable: false
     })
     contrasena: string;
+
+    @ManyToOne(
+        () => RolEntity,
+    )
+    rol: RolEntity;
+
+
 
 
 }

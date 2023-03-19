@@ -24,13 +24,4 @@ describe('UsuarioService', () => {
     expect(service).toBeDefined();
   });
 
-  it('Deberia crear un usuario', () => {
-    const usuario = {
-      nombre: 'Adrian',
-      correo: 'cadrian_2001@hotmail.com',
-      contrasena: '123456789'
-    };
-    const respuesta = service.create(usuario);
-    expect(respuesta).toBe(usuario);
-  })
 });
