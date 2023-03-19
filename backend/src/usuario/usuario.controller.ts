@@ -69,8 +69,13 @@ export class UsuarioController {
             console.error('Errores: ', arregloErrores);
             throw new BadRequestException('No envia bien parametros');
         }
+        try{
+            return await this.usuarioService.update(+params.id, bodyParams);
+        }catch(e){
+            console.error('Error: ', e);
+            throw new BadRequestException('No envia bien parametros');
+        }
 
-        return this.usuarioService.update(+params.id, bodyParams);
     }
 
     @Post('login')
