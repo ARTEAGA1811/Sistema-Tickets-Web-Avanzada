@@ -2,7 +2,6 @@ import {Estado, ITicket, Prioridad} from "../../../interfaces";
 import InfoBadget from "./InfoBadget";
 import {useState} from "react";
 import ModalTicket from "./ModalTicket";
-import {ITarjetaTicket} from "./TarjetaTicket";
 import DescripcionTicket from "./DescripcionTicket";
 import presentarFecha from "../../../utils/fechas";
 import {Colores} from "../../../interfaces/enums";
