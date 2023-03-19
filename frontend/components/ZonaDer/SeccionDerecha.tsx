@@ -1,6 +1,6 @@
 import {ReactNode, useContext, useState} from "react";
 import PrincipalTickets from "./PrincipalTickets";
-import PrincipalNotificaciones from "./PrincipalNotificaciones";
+import PrincipalPerfil from "./PrincipalPerfil";
 import {SeccionContext} from "../SeccionContext";
 import {EnumSeccionActual} from "../../interfaces/enums";
 
@@ -15,6 +15,6 @@ export default function SeccionDerecha() {
     }
 
     return (
-        <PrincipalNotificaciones/>
+        <PrincipalPerfil/>
     );
 }

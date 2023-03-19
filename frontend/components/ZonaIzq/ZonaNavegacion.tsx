@@ -14,7 +14,7 @@ export interface ISeccion {
 
 const listaSecciones: ISeccion[] = [
     {id: 1, nombre: 'Tickets', seleccionado: true},
-    {id: 2, nombre: 'Notificaciones', seleccionado: false},
+    {id: 2, nombre: 'Perfil', seleccionado: false},
 ];
 
 export default function ZonaNavegacion() {
@@ -24,10 +24,10 @@ export default function ZonaNavegacion() {
     const [secciones, setSecciones] = useState<ISeccion[]>(listaSecciones)
 
     useEffect(() => {
-        if(usuario.rol === Rol.SOPORTE){
-            //eliminar la seccion de notificaciones
-            setSecciones(secciones.filter(seccion => seccion.id !== 2))
-        }
+        // if(usuario.rol === Rol.SOPORTE){
+        //     //eliminar la seccion de notificaciones
+        //     setSecciones(secciones.filter(seccion => seccion.id !== 2))
+        // }
     }, [])
 
 

@@ -1,6 +1,6 @@
 export enum EnumSeccionActual {
     Tickets = "Tickets",
-    Notificaciones = "Notificaciones",
+    Perfil = "Perfil",
 }
 
 

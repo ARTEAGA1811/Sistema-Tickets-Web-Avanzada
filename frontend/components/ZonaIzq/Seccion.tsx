@@ -15,7 +15,7 @@ export default function Seccion(props: { misSecciones: ISeccion[], setMisSeccion
 
         const idSeccionRegistrada = seccionActual == EnumSeccionActual.Tickets ? 1 : 2;
         if(idSeccionRegistrada !== idSeccion){
-            setSeccionActual(idSeccion === 1 ? EnumSeccionActual.Tickets : EnumSeccionActual.Notificaciones)
+            setSeccionActual(idSeccion === 1 ? EnumSeccionActual.Tickets : EnumSeccionActual.Perfil)
         }
     }
     return (

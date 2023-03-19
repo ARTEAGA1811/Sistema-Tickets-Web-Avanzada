@@ -52,7 +52,7 @@
 
 .descripcion_container{
     display: grid;
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 5fr 2fr;
     gap: 2rem;
 }
 
@@ -70,5 +70,12 @@
 .registro_container div:first-child{
     width: 100%;
     min-width: 24rem;
+
+}
+
+
+.perfil_container{
+    display: grid;
+    column-gap: 2rem;
 
 }
