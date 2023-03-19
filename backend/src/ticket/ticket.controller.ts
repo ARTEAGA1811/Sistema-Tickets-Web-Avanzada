@@ -1,4 +1,15 @@
-import {BadRequestException, Body, Controller, HttpCode, Post, UseGuards, Request, Get} from '@nestjs/common';
+import {
+    BadRequestException,
+    Body,
+    Controller,
+    HttpCode,
+    Post,
+    UseGuards,
+    Request,
+    Get,
+    Query,
+    Put, Param
+} from '@nestjs/common';
 import {JwtGuard} from "../usuario/jwt.guard";
 import {Roles, RolesGuard} from "../usuario/roles.guard";
 import {validate} from "class-validator";
@@ -37,4 +48,19 @@ export class TicketController {
     async obtenerTicketsSoporte(@Request() req) {
         return this.ticketService.obtenerTicketsSoporte(req.user.sub)
     }
+
+    @Put('soporte/:idTicket')
+    @Roles('Soporte')
+    @UseGuards(JwtGuard, RolesGuard)
+    async actualizarTicketSoporte(@Body() bodyParams, @Request() req, @Param() params) {
+        const arregloErrores = await validate(bodyParams);
+        if (arregloErrores.length > 0) {
+            console.error('Errores: ', arregloErrores);
+            throw new BadRequestException('No envia bien parametros');
+        }
+
+        return await this.ticketService.actualizarTicketSoporte(params.idTicket, bodyParams, req.user.sub)
+    }
 }
+
+

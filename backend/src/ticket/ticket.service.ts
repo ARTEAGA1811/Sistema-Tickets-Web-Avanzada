@@ -6,6 +6,7 @@ import {EstadoEntity} from "./estado.entity";
 import {TicketEntity} from "./ticket.entity";
 import {TicketCreateDto} from "./dto/ticket-create.dto";
 import {UsuarioService} from "../usuario/usuario.service";
+import {TicketActualizarDto} from "./dto/ticket-actualizar.dto";
 
 @Injectable()
 export class TicketService implements OnApplicationBootstrap{
@@ -69,5 +70,18 @@ export class TicketService implements OnApplicationBootstrap{
             },
             relations: ['usuario', 'soporte', 'prioridad', 'estado']
         });
+    }
+
+    async actualizarTicketSoporte(id: number, datosActualizar: TicketActualizarDto, nombreUsuario: string){
+        const estado : EstadoEntity = await this.estadoRepository.findOne({where: {nombre: datosActualizar.estado}});
+        const prioridad : PrioridadEntity = await this.prioridadRepository.findOne({where: {nombre: datosActualizar.prioridad}});
+
+        console.log('id ' + id)
+        return this.ticketRepository.update(id, {
+            estado: estado,
+            prioridad: prioridad,
+            respuesta: datosActualizar.respuesta,
+            fechaResolucion: new Date()
+        })
     }
 }
