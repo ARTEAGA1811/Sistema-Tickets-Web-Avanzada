@@ -1,4 +1,4 @@
-import {IsNotEmpty, IsString} from 'class-validator';
+import {IsIn, IsNotEmpty, IsString} from 'class-validator';
 export class UsuarioCreateDto{
     @IsNotEmpty()
     @IsString()
@@ -11,6 +11,10 @@ export class UsuarioCreateDto{
     @IsNotEmpty()
     @IsString()
     contrasena: string;
+
+    @IsNotEmpty()
+    @IsIn(['Soporte', 'Usuario'])
+    rol: string;
 
 
 }

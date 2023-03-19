@@ -3,6 +3,7 @@ import {DataSource, FindManyOptions} from "typeorm";
 import {InjectDataSource} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./usuario.entity";
 import {UsuarioCreateDto} from "./dto/usuario-create.dto";
+import {UsuarioUpdateDto} from "./dto/usuario-update.dto";
 
 @Injectable()
 export class UsuarioService {
@@ -22,7 +23,11 @@ export class UsuarioService {
             }
         });
     }
-    create(datosCreacion: UsuarioCreateDto){
+    create(datosCreacion: UsuarioEntity){
         return this.usuarioRepository.save(datosCreacion);
+    }
+
+    update(id: number, nuevo: UsuarioUpdateDto){
+        return this.usuarioRepository.save({...nuevo, id})
     }
 }

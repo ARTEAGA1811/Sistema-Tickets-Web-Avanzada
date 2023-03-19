@@ -4,6 +4,7 @@ import { AppService } from './app.service';
 import { UsuarioModule } from './usuario/usuario.module';
 import {TypeOrmModule} from "@nestjs/typeorm";
 import {UsuarioEntity} from "./usuario/usuario.entity";
+import {RolEntity} from "./usuario/rol.entity";
 
 @Module({
   imports: [
@@ -12,10 +13,10 @@ import {UsuarioEntity} from "./usuario/usuario.entity";
         type: 'sqlite',
         database: './bdd/bdd.sqlite',
         entities: [
-            UsuarioEntity
+            UsuarioEntity, RolEntity
         ],
         synchronize: true,
-        dropSchema: false
+        dropSchema: true
       })
   ],
   controllers: [AppController],
