@@ -20,7 +20,7 @@ import {PrioridadEntity} from "./ticket/prioridad.entity";
             UsuarioEntity, RolEntity, TicketEntity, EstadoEntity, PrioridadEntity
         ],
         synchronize: true,
-        dropSchema: true
+        dropSchema: false
       }),
       TicketModule
   ],
