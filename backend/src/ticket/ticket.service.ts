@@ -16,8 +16,8 @@ export class TicketService implements OnApplicationBootstrap{
         private readonly usuarioService: UsuarioService,
     ){
     }
-    public arregloPrioridades = [{id: 1, nombre: 'Baja'}, {id: 2, nombre: 'Media'}, {id: 3, nombre: 'Alta'}];
-    public arregloEstados = [{id: 1, nombre: 'Abierto'}, {id: 2, nombre: 'En Proceso'}, {id: 3, nombre: 'Cerrado'}, {id: 4, nombre: "Sin prioridad"}];
+    public arregloPrioridades = [{id: 1, nombre: 'Baja'}, {id: 2, nombre: 'Media'}, {id: 3, nombre: 'Alta'}, , {id: 4, nombre: "Sin prioridad"}];
+    public arregloEstados = [{id: 1, nombre: 'Abierto'}, {id: 2, nombre: 'En Proceso'}, {id: 3, nombre: 'Cerrado'}];
     async onApplicationBootstrap() {
         const prioridades = await this.prioridadRepository.find();
         if(prioridades.length === 0){
@@ -34,11 +34,12 @@ export class TicketService implements OnApplicationBootstrap{
         const nuevoTicket = new TicketEntity();
         nuevoTicket.titulo = ticket.titulo;
         nuevoTicket.descripcion = ticket.descripcion;
-        nuevoTicket.prioridad = await this.prioridadRepository.findOne({where: {nombre: ticket.prioridad}});
         nuevoTicket.usuario = await this.usuarioService.findOneByNombre(nombreUsuario)
         if(!nuevoTicket.usuario){
             console.log('Usuario ' + nombreUsuario + ' no existe');
         }
+
+        nuevoTicket.prioridad = await this.prioridadRepository.findOne({where: {nombre: 'Sin prioridad'}});
         nuevoTicket.estado = await this.estadoRepository.findOne({where: {nombre: 'Abierto'}});
         nuevoTicket.soporte = await this.usuarioService.buscarSoporteDisponible();
         return this.ticketRepository.save(nuevoTicket);

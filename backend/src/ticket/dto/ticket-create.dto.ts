@@ -9,9 +9,5 @@ export class TicketCreateDto{
     @IsString()
     descripcion: string;
 
-    @IsNotEmpty()
-    @IsIn(['Alta', 'Media', 'Baja', 'Sin prioridad'])
-    prioridad: string;
-
 
 }
