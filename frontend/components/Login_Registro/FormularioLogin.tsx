@@ -2,12 +2,13 @@ import login from "../../styles/login.module.css" ;
 import {Dispatch, SetStateAction, useContext, useState} from "react";
 import {UsuarioContext} from "../UsuarioContext";
 import {usuarioFakeData} from "../../utils/usuario-data";
+import {apiLoginUsuario} from "../../consumoApi/api";
 
 function FormularioLogin(props: { setEstaLogeado: Dispatch<SetStateAction<boolean>> }) {
     const [correo, setCorreo] = useState("");
     const [contra, setContra] = useState("");
 
-    const {setUsuario} = useContext(UsuarioContext);
+    const {usuario, setUsuario} = useContext(UsuarioContext);
 
     const handleCorreo = (e: any) => {
         setCorreo(e.target.value);
@@ -22,6 +23,23 @@ function FormularioLogin(props: { setEstaLogeado: Dispatch<SetStateAction<boolea
         //Aquí va la lógica para enviar los datos al backend
 
         //por ahora se usa el fake data
+        const ingresarLogin =  () => {
+            const respuesta =  apiLoginUsuario(correo, contra);
+            respuesta.then((r) =>{
+                console.log("Usuario logeado");
+                props.setEstaLogeado(true);
+                setUsuario(usuarioFakeData);
+                const data = await respuesta.json();
+                console.log(data);
+
+            }).catch((e) => {
+                console.error("Error al logearse");
+                console.log(e);
+            }
+            if (respuesta.status === 200) {
+
+            }
+        }
         if (true) {
             props.setEstaLogeado(true);
             setUsuario(usuarioFakeData);

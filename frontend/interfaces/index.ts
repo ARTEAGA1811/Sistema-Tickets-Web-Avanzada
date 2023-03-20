@@ -10,28 +10,29 @@ export type User = {
 }
 
 export enum Prioridad {
-    BAJA = 'BAJA',
-    MEDIA = 'MEDIA',
-    ALTA = 'ALTA',
-    SIN_PRIORIDAD = 'SIN PRIORIDAD'
+    BAJA = 'Baja',
+    MEDIA = 'Media',
+    ALTA = 'Alta',
+    SIN_PRIORIDAD = 'Sin prioridad'
 }
 
 export enum Estado {
-    ABIERTO = 'ABIERTO',
-    CERRADO = 'CERRADO'
+    ABIERTO = 'Abierto',
+    CERRADO = 'Cerrado'
 }
 
 export enum Rol {
-    USUARIO = 'USUARIO',
-    SOPORTE = 'SOPORTE'
+    USUARIO = 'Usuario',
+    SOPORTE = 'Soporte'
 }
 
 export interface IUsuario {
-    id: number;
+    id?: number;
     nombre: string;
     correo: string;
     password?: string;
     rol: Rol;
+    userToken?: string;
 }
 
 

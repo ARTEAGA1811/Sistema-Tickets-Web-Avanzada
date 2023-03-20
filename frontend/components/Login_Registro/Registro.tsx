@@ -3,6 +3,8 @@ import React from "react";
 import st from "../../styles/principal.module.css";
 import {Alert, Button, Form} from "react-bootstrap";
 import ModalMensaje from "./ModalMensaje";
+import {IUsuario, Rol} from "../../interfaces";
+import {apiCrearUsuario} from "../../consumoApi/api";
 
 export default function () {
     const [nombreUsuario, setNombreUsuario] = React.useState("");
@@ -17,8 +19,9 @@ export default function () {
 
         //Aquí va la petición al servidor
         crearUsuario()
-            .then(() => {
+            .then((respuesta) => {
                 console.log("Usuario creado");
+                console.log(respuesta);
                 setRegistroCorrecto(true);
             })
             .catch((error) => {
@@ -33,25 +36,16 @@ export default function () {
     }
 
     const crearUsuario = async () => {
-        console.log("Creando usuario");
-        console.log(nombreUsuario);
-        console.log(correoElectronico);
-        console.log(contrasena);
-        const response = await fetch("http://localhost:3001/usuario", {
-            method: "POST",
-            //mode: "no-cors",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                "nombre": nombreUsuario,
-                "correo": correoElectronico,
-                "contrasena": contrasena,
-                "rol": "Usuario"
-            })
-        },);
+        const nuevoUsuario:IUsuario = {
+            nombre: nombreUsuario,
+            correo: correoElectronico,
+            password: contrasena,
+            rol: Rol.USUARIO
+        }
+        const response = await apiCrearUsuario(nuevoUsuario);
         const data = await response.json();
-        console.log(data);
+        console.log(data)
+        return data;
     }
 
     const handleNombreUsuario = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -94,7 +88,7 @@ export default function () {
                                           onChange={handleNombreUsuario}/>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
+                        <Form.Group className="mb-3" controlId="formCorreo">
                             <Form.Label className={"text-primary fs-5 fw-semibold"}>Correo electrónico</Form.Label>
                             <Form.Control type="email" placeholder="Ingresa tu correo electrónico" required={true}
                                           onChange={handleCorreoElectronico}/>
