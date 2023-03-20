@@ -1,0 +1,26 @@
+.contenedor {
+    /*Haz un degradado estilo asfalto con este color D2D5DE*/
+    background: #E0E2EA;;
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+}
+
+.parte_izq {
+    justify-self: center;
+    display: grid;
+    justify-items: center;
+    gap: 1rem;
+}
+
+.formulario {
+    display: grid;
+    gap: .8rem;
+}
+
+.formulario button{
+    justify-self: center;
+}

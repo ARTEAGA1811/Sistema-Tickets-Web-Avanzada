@@ -1,0 +1,81 @@
+.main{
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+}
+
+.zonaNavegacion{
+    position: sticky;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.header{
+    display: grid;
+    gap: 2rem;
+}
+
+.seccion_container{
+    display: grid;
+    grid-template-columns: 1fr;
+    padding: 1rem;
+    gap: 1rem;
+}
+
+.usuario_container{
+    display: flex;
+    justify-content: space-between;
+}
+
+.imgUsuario{
+    width: 40px;
+    height: 40px;
+    max-width: 40px;
+    max-height: 40px;
+    margin-right: 0.4rem;
+}
+
+.imgCerrar{
+    width: 30px;
+    height: 30px;
+    max-width: 30px;
+    max-height: 30px;
+}
+
+.imgLupa{
+    width: 1.5rem;
+    margin-left: 0;
+}
+
+.descripcion_container{
+    display: grid;
+    grid-template-columns: 5fr 2fr;
+    gap: 2rem;
+}
+
+
+
+.registro_container{
+    width: 100%;
+    height: 100vh;
+    background-color: #F7F5FF;
+    display: grid;
+    place-content: center;
+}
+
+
+.registro_container div:first-child{
+    width: 100%;
+    min-width: 24rem;
+
+}
+
+
+.perfil_container{
+    display: grid;
+    column-gap: 2rem;
+
+}
