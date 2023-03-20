@@ -31,7 +31,7 @@ export class UsuarioController {
 
     @Get("/:id")
     @UseGuards(JwtGuard, RolesGuard)
-    @Roles('Soporte')
+    @Roles('Soporte', 'Usuario')
     @HttpCode(200)
     findOneById(@Param() params){
         return this.usuarioService.findOneById(+params.id);
@@ -55,9 +55,9 @@ export class UsuarioController {
         nuevoUsuario.correo = bodyParams.correo;
         nuevoUsuario.contrasena = bodyParams.contrasena;
         nuevoUsuario.rol = await this.rolRepository.findOne({where: {nombre: bodyParams.rol}});
-        await this.usuarioService.create(nuevoUsuario);
+        const usuarioCreado = await this.usuarioService.create(nuevoUsuario);
 
-        return {accessToken: this.jwtService.sign({sub: nuevoUsuario.nombreUsuario})}
+        return {accessToken: this.jwtService.sign({sub: nuevoUsuario.nombreUsuario}), id: usuarioCreado.id}
     }
 
     @Put("/:id")
@@ -84,7 +84,7 @@ export class UsuarioController {
         console.log(`Post con parametros: ${bodyParams.correo} ${bodyParams.contrasena}`)
         const usuario = (await this.usuarioService.find({where: {correo: bodyParams.correo}}))[0]
         if(usuario && usuario.contrasena === bodyParams.contrasena){
-            return {accessToken: this.jwtService.sign({sub: usuario.nombreUsuario})}
+            return {accessToken: this.jwtService.sign({sub: usuario.nombreUsuario}), id: usuario.id}
         }else{
             if(!usuario){
                 console.log('Usuario es undefined');
