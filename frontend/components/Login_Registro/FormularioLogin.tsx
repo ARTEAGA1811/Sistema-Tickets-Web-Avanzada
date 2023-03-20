@@ -23,27 +23,38 @@ function FormularioLogin(props: { setEstaLogeado: Dispatch<SetStateAction<boolea
         //Aquí va la lógica para enviar los datos al backend
 
         //por ahora se usa el fake data
-        const ingresarLogin =  () => {
-            const respuesta =  apiLoginUsuario(correo, contra);
-            respuesta.then((r) =>{
-                console.log("Usuario logeado");
-                props.setEstaLogeado(true);
-                setUsuario(usuarioFakeData);
-                const data = await respuesta.json();
-                console.log(data);
+        const ingresarLogin = async () => {
+            try {
+                const respuesta = await apiLoginUsuario(correo, contra);
+                if (respuesta.status !== 200) {
+                    alert("Error al logearse");
+                } else {
+                    const data = await respuesta.json();
+                    console.log(data);
 
-            }).catch((e) => {
+                    console.log("Usuario logeado");
+                    const idUsuario = data.id;
+                    const userToken = data.accessToken;
+
+                    props.setEstaLogeado(true);
+
+                    setUsuario({
+                        ...usuario,
+                        id: idUsuario,
+                        userToken: userToken,
+                        password: contra,
+                        correo: correo
+                    });
+                }
+
+            } catch (e) {
                 console.error("Error al logearse");
-                console.log(e);
-            }
-            if (respuesta.status === 200) {
-
+                alert("Error al logearse");
             }
         }
-        if (true) {
-            props.setEstaLogeado(true);
-            setUsuario(usuarioFakeData);
-        }
+        ingresarLogin().then().catch((e) => {
+            console.error(e)
+        });
     }
 
     return (

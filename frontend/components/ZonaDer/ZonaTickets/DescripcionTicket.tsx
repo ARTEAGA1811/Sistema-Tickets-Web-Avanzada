@@ -9,7 +9,7 @@ import AgregarRespuesta from "./AgregarRespuesta";
 import TarjetaUsuario from "./TarjetaUsuario";
 import BotonPrioridad from "./BotonPrioridad";
 
-export default function DescripcionTicket({ticket}: { ticket: ITicket }) {
+export default function DescripcionTicket({ticket, cerrarInfoTicket}: { ticket: ITicket, cerrarInfoTicket: any }) {
     const {usuario} = useContext(UsuarioContext)
     return (
         <div className={st.descripcion_container}>
@@ -18,7 +18,7 @@ export default function DescripcionTicket({ticket}: { ticket: ITicket }) {
                 {
                     (usuario.rol === Rol.SOPORTE && ticket.estado === Estado.ABIERTO)
                         ?
-                        <AgregarRespuesta ticket={ticket}/>
+                        <AgregarRespuesta ticket={ticket} cerrarInfoTicket={cerrarInfoTicket}/>
                         :
                         <Respuesta ticket={ticket}/>
 

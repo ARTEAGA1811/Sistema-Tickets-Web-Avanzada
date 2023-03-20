@@ -5,8 +5,8 @@ import presentarFecha from "../../../utils/fechas";
 export default function Respuesta({ticket}: { ticket: ITicket }) {
     const infoRespuesta = {
         titulo: "Respuesta",
-        descripcion: ticket.descripcion,
-        fechaCreacion: ticket.fechaCreacion
+        descripcion: ticket.respuesta,
+        fechaCreacion: ticket.fechaResolucion
     }
 
     const colocarRespuesta = () => {

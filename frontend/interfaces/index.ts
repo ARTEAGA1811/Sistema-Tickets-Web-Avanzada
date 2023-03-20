@@ -36,7 +36,7 @@ export interface IUsuario {
 }
 
 
-export interface ITicket{
+export interface ITicket {
     id: string;
     titulo: string;
     descripcion: string;
@@ -44,12 +44,12 @@ export interface ITicket{
     fechaResolucion?: Date;
     estado: Estado;
     prioridad?: Prioridad;
-    usuarioId: number;
-    soporteId: number;
-    respuestaId: string;
+    usuario: IUsuario;
+    soporte: IUsuario;
+    respuesta: string;
 }
 
-export interface IRespuestaTicket{
+export interface IRespuestaTicket {
     id: string;
     respuesta: string;
 }

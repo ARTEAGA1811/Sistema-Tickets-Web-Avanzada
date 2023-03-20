@@ -1,9 +1,12 @@
 import {Button, Form} from "react-bootstrap";
-import {Dispatch, SetStateAction, useState} from "react";
+import {Dispatch, SetStateAction, useContext, useState} from "react";
+import {UsuarioContext} from "../UsuarioContext";
+import {apiCrearTicket} from "../../consumoApi/api";
 
-export default function NuevoTicket(props: { setNuevoTicket: Dispatch<SetStateAction<boolean>> }) {
+export default function NuevoTicket(props: { setNuevoTicket: Dispatch<SetStateAction<boolean>>, setActualizarLista: any }) {
     const [inputTitulo, setInputTitulo] = useState<string>("");
     const [inputDescripcion, setInputDescripcion] = useState<string>("");
+    const {usuario} = useContext(UsuarioContext)
 
     const regresar = () => {
         props.setNuevoTicket(false);
@@ -11,12 +14,27 @@ export default function NuevoTicket(props: { setNuevoTicket: Dispatch<SetStateAc
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
-        alert("Ticket creado con éxito");
+
 
         //Logica con el backend
+        const crearNuevoTicket = async () => {
+            try {
+                const respuesta = await apiCrearTicket(inputTitulo, inputDescripcion, usuario.userToken);
+                const data = await respuesta.json();
+                alert("Ticket creado con éxito");
+                regresar();
+            } catch (e) {
+                console.log(e);
+                alert("Error al crear ticket");
+            }
+        }
 
-        //Luego se regresa
-        regresar();
+        crearNuevoTicket().then((r) =>{
+            props.setActualizarLista(true);
+        }).catch((err) => {
+            console.log(err);
+            alert("Error al crear ticket");
+        })
     }
 
     const handleTitulo = (event: any) => {

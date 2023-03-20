@@ -2,7 +2,6 @@ import login from "../../styles/login.module.css";
 import FormularioLogin from "./FormularioLogin";
 import Head from "next/head";
 import React, {Dispatch, SetStateAction} from "react";
-import {log} from "util";
 
 export default function Login(props: { setEstaLogeado:  Dispatch<SetStateAction<boolean>> }) {
     return (

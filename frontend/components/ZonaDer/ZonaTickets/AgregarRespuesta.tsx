@@ -1,22 +1,34 @@
 import {Button, Form} from "react-bootstrap";
-import presentarFecha from "../../../utils/fechas";
-import {ITicket} from "../../../interfaces";
-import {useState} from "react";
+import {Estado, ITicket} from "../../../interfaces";
+import {useContext, useState} from "react";
+import {apiActualizarTicket} from "../../../consumoApi/api";
+import {UsuarioContext} from "../../UsuarioContext";
+import {ActualizarListaContext} from "../../ActualizarListaContext";
 
-export default function AgregarRespuesta({ticket}: { ticket: ITicket }) {
+export default function AgregarRespuesta({ticket, cerrarInfoTicket}: { ticket: ITicket, cerrarInfoTicket: any }) {
     const [inputTextArea, setInputTextArea] = useState<string>("");
+    const {usuario} = useContext(UsuarioContext)
+    const {setActualizarLista} = useContext(ActualizarListaContext)
 
-    const infoRespuesta = {
-        titulo: "Respuesta",
-        descripcion: ticket.descripcion,
-        fechaCreacion: ticket.fechaCreacion
-    }
 
     const handleSubmit = (event: any) => {
         event.preventDefault();
 
-        //Se envia la respuesta
-        alert("Se envia la respuesta" + inputTextArea);
+        const actualizarMiTicket = async () => {
+            try {
+                const respuesta = await apiActualizarTicket(inputTextArea, ticket.prioridad, Estado.CERRADO, parseInt(ticket.id), usuario.userToken)
+                const data = await respuesta.json();
+                console.log(data);
+                setActualizarLista(true);
+                cerrarInfoTicket();
+
+            } catch (e) {
+                console.log(e);
+                alert("Error al actualizar el ticket")
+            }
+        }
+
+        actualizarMiTicket().then().catch(e => console.error(e));
     }
     const handleInputTextArea = (event: any) => {
         setInputTextArea(event.target.value);

@@ -11,6 +11,11 @@ export default function Ticket({ticket}: { ticket: ITicket }) {
     const abrirInfoTicket = () => {
         setMostrarInfoTicket(true);
     }
+
+    const cerrarInfoTicket = () => {
+        setMostrarInfoTicket(false);
+    }
+
     const obtenerColorEstado = () => {
         switch (ticket.estado) {
             case Estado.ABIERTO:
@@ -78,7 +83,7 @@ export default function Ticket({ticket}: { ticket: ITicket }) {
             {
                 mostrarInfoTicket &&
                 <ModalTicket setMostrarInfoTicket={setMostrarInfoTicket}>
-                    <DescripcionTicket ticket={ticket}/>
+                    <DescripcionTicket ticket={ticket} cerrarInfoTicket={cerrarInfoTicket}/>
                 </ModalTicket>
             }
         </div>

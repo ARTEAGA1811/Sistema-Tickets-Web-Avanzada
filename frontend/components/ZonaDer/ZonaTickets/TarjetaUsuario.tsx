@@ -11,8 +11,8 @@ export default function TarjetaUsuario({ticket}: { ticket: ITicket }) {
     const obtenerDataUsuario = () => {
         //Por ahora se queman los datos.
         return {
-            nombre: "Juan Perez",
-            correo: "juan.perez@epn.edu.ec"
+            nombre: ticket.usuario.nombre,
+            correo: ticket.usuario.correo
         }
     }
     return (

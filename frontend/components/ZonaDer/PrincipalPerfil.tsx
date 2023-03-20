@@ -95,7 +95,7 @@ export default function PrincipalPerfil() {
                     readOnly
                     value={usuario.correo}
                 />
-                {usuario.rol === Rol.USUARIO ? mostrarInfoUsuario() : mostrarInfoSoporte()}
+                {/*{usuario.rol === Rol.USUARIO ? mostrarInfoUsuario() : mostrarInfoSoporte()}*/}
 
             </main>
         </div>
