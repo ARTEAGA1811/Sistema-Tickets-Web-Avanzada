@@ -81,8 +81,8 @@ export class UsuarioController {
     @Post('login')
     @HttpCode(200)
     async login(@Body() bodyParams){
-        console.log(`Post con parametros: ${bodyParams.nombreUsuario} ${bodyParams.contrasena}`)
-        const usuario = await this.usuarioService.findOneByNombre(bodyParams.nombreUsuario)
+        console.log(`Post con parametros: ${bodyParams.correo} ${bodyParams.contrasena}`)
+        const usuario = (await this.usuarioService.find({where: {correo: bodyParams.correo}}))[0]
         if(usuario && usuario.contrasena === bodyParams.contrasena){
             return {accessToken: this.jwtService.sign({sub: usuario.nombreUsuario})}
         }else{
